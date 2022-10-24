@@ -45,18 +45,18 @@ def leerArchivos():
         #if (contadorDemandas == 0 or contadorDemandas//5 == 1):
         mail = ingresoDemanda[0]
         localidad = (ingresoDemanda[1]).upper()
-        competencia = (ingresoDemanda[2]).upper()
-        organismo = ingresoDemanda[3]
-        tipoCausa = (ingresoDemanda[4]).upper()
-        causa = (ingresoDemanda[5]).upper()
-        actor = (ingresoDemanda[6]).upper()
-        domicilio = (ingresoDemanda[7]).upper()
+        competencia = (ingresoDemanda[2]+","+ingresoDemanda[3]).upper()
+        organismo = ingresoDemanda[4]+","+ingresoDemanda[5]
+        tipoCausa = (ingresoDemanda[6]).upper()
+        causa = (ingresoDemanda[7]).upper()
+        actor = (ingresoDemanda[8]).upper()
+        domicilio = (ingresoDemanda[9]).upper()
 
-        demandados.append(ingresoDemanda[9]+ingresoDemanda[10])
-        domicilios.append(ingresoDemanda[11])
-        montos.append(ingresoDemanda[12])
+        demandados.append(ingresoDemanda[11]+ingresoDemanda[12])
+        domicilios.append(ingresoDemanda[13])
+        montos.append(ingresoDemanda[14])
         # pdfs.append((ingresoDemanda[13]+","+ingresoDemanda[14]).rstrip())
-        pdfs.append((ingresoDemanda[13]).rstrip())
+        pdfs.append((ingresoDemanda[15]).rstrip())
     return [demandados, domicilios, montos, pdfs, mail, localidad, competencia, organismo, tipoCausa, causa, actor, domicilio]
 
 # Loguea al profesional en el SISFE
@@ -385,7 +385,7 @@ def validarArchivo():
         line_count = 0
         for row in csv_reader:
             line_count += 1
-            if (len(row) != 14):
+            if (len(row) != 16):
                 print(len(row))
                 quitar_registros.append(row)
                 agregarAerrores(row)
